@@ -1,0 +1,121 @@
+@{
+    ViewData["Title"] = "DatabaseMVC";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="wrapper">
+    <div class="col-md-1"></div>
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Select provider</div>
+                <div class="panel-body">
+                    <div class="list-group" id="list-tab providers" role="tablist">
+                        <!-- ko foreach: providers -->
+                        <a class="list-group-item list-group-item-action providers" data-toggle="list" href="#" role="tab" data-bind="text:$data, click:$root.selectProv, css: $parent.stylingProv($data)"></a>
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6" data-bind="visible:connection">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Select table</div>
+                        <div class="panel-body">
+                            <div class="list-group" id="list-tab tables" role="tablist">
+                                <!-- ko foreach: tables -->
+                                <a class="list-group-item list-group-item-action tables" data-toggle="list" href="#" role="tab" data-bind="text:$data, click:$root.selectTab, css: $parent.stylingTab($data)"></a>
+                                <!-- /ko -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div id="connection" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Input connection string</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Connection string</label>
+                    <input type="text" class="form-control" name="title" placeholder="Title" data-bind="value:connectionString">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bind="click:setConnect">Connect</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div id="success" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Your connection</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <p data-bind="text:connectionString"></p>
+                    <strong>Successfully (or not)</strong>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div id="columns" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Select columns</h4>
+            </div>
+            <div class="modal-body">
+                <div class="list-group" id="list-tab tables" role="tablist">
+                    <!-- ko foreach: columns -->
+                    <a class="list-group-item list-group-item-action tables" data-toggle="list" href="#" role="tab" data-bind="text:$data, click:$root.selectCol, css: $parent.stylingCol($data)"></a>
+                    <!-- /ko -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bind="click:getJson">Submit</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div id="getJson" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Your JSON</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <p data-bind="text:jsn"></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+@section scripts{
+  
+<script src="/app/database.js"></script>
+    }
+
+

@@ -59,7 +59,7 @@ namespace CorePWy
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Users}/{action=GetAll}/{id?}");
+                    template: "{controller=Providers}/{action=Index}/{id?}");
             });
         }
     }

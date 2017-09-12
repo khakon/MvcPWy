@@ -11,6 +11,7 @@ namespace CorePWy.Controllers
     public class UsersController : Controller
     {
         ApplicationDbContext _db;
+        //MySQLDbContext _db = new MySQLDbContext();
         public UsersController(ApplicationDbContext db)
         {
             _db = db;
